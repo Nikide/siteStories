@@ -72,7 +72,7 @@ slider.events.on('indexChanged', function () {
     /**
      * Если есть data-duration, то берем из него длительность слайда
      */
-    if ($($('.slide').get(info.displayIndex - 1)).data('duration') !== undefined) { 
+    if ($($('.slide').get(info.displayIndex - 1)).data('duration') !== undefined) {
         startProgress(info.displayIndex - 1, $($('.slide').get(0)).data('duration'))
         initInterval($($('.slide').get(0)).data('duration'))
     } else {
@@ -147,7 +147,7 @@ function initForm() {
     $('.fields').slideToggle()
     $('.send-btn').addClass('is-loading')
 }
-function doneForm(){
+function doneForm() {
     $('.send-btn').slideToggle('fast')
     $('.success').slideToggle('fast')
 }
@@ -155,7 +155,7 @@ function doneForm(){
  * Странциа загрузилась
  */
 $(window).on('load', function () {
-    
+
     $('#preloader').fadeOut(); //Убераем прелоадер
     /**
      * Запускаем анимации для первого слайда
@@ -199,13 +199,19 @@ $(window).on('load', function () {
         var percent = e.clientX / $(this).width() * 100;
         /**
          * Если данный процент, то переходим к следующему слайда
-         */
+         */        
         if (percent >= 75) {
             /**
              * Переходим к следующему слайду только если не последний слайд
              */
             slider.getInfo().displayIndex != slider.getInfo().slideCount &&
                 slider.goTo(slider.getInfo().displayIndex)
+        } else if (percent <= 25) {
+            /**
+             * Переходим к предыдущему слайду
+             */
+            slider.getInfo().displayIndex != 1 &&
+                slider.goTo(slider.getInfo().displayIndex - 2)
         } else {
             /**
              * Останавливаем слайд если процент меньше чем нужно для перехода на слудующий слайд
