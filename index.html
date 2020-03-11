@@ -18,7 +18,8 @@
     <div id="preloader">
         <div class="inner">
             <div class="avatar">
-                <img src="https://scontent-frx5-1.cdninstagram.com/v/t51.2885-19/s150x150/36502191_1560210947435085_6400404622921433088_n.jpg?_nc_ht=scontent-frx5-1.cdninstagram.com&_nc_ohc=dR2B-niHJW0AX-sjJby&oh=671960c4d3c3db131fb30589527c687d&oe=5EA73C90" alt="" srcset="">
+                <img src="https://scontent-frx5-1.cdninstagram.com/v/t51.2885-19/s150x150/36502191_1560210947435085_6400404622921433088_n.jpg?_nc_ht=scontent-frx5-1.cdninstagram.com&_nc_ohc=dR2B-niHJW0AX-sjJby&oh=671960c4d3c3db131fb30589527c687d&oe=5EA73C90"
+                    alt="" srcset="">
             </div>
             <p class="has-text-centered title has-text-white">
                 <i>Анастасия Сенёва</i>
@@ -125,7 +126,8 @@
                                 Классный инструмент для развития?
                             </p>
                             <p class="buttons is-centered">
-                                <button onclick="viewForm()" class="animation delay-0 from-left button is-large is-warning">
+                                <button onclick="viewForm()"
+                                    class="animation delay-0 from-left button is-large is-warning">
                                     Записаться на курс!
                                 </button>
                             </p>
@@ -133,19 +135,22 @@
                                 <div class="column is-half">
                                     <div class="">
                                         <form action="">
-                                            <div class="field">
-                                                <label class="label has-text-white">Имя</label>
-                                                <div class="control">
-                                                    <input class="input" type="text" placeholder="Имя">
+                                            <div class="fields">
+                                                <div class="field">
+                                                    <label class="label has-text-white">Имя</label>
+                                                    <div class="control">
+                                                        <input class="input" type="text" placeholder="Имя">
+                                                    </div>
+                                                </div>
+                                                <div class="field">
+                                                    <label class="label has-text-white">Телефон</label>
+                                                    <div class="control">
+                                                        <input class="input" type="tel" placeholder="Телефон">
+                                                    </div>
                                                 </div>
                                             </div>
-                                            <div class="field">
-                                                <label class="label has-text-white">Телефон</label>
-                                                <div class="control">
-                                                    <input class="input" type="tel" placeholder="Телефон">
-                                                </div>
-                                            </div>
-                                            <div class="button is-fullwidth is-success">
+
+                                            <div onclick="initForm()" class="button send-btn is-fullwidth is-success">
                                                 Записаться
                                             </div>
                                         </form>

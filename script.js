@@ -4,7 +4,6 @@
  * @author Nikita Demchev 2020
  */
 
-
 /**
  * @description Инициализирует слайдер
  */
@@ -41,54 +40,58 @@ function nexSlide() {
  */
 
 var interval;
-
+/**
+ * 
+ * @param {number} duration Длиельность
+ */
 function initInterval(duration) {
     clearTimeout(interval);
     interval = setTimeout(nexSlide, duration)
 }
 
 /**
- * Start all events when change slide
+ * Обрабодчик смены слайда
  */
 slider.events.on('indexChanged', function () {
 
     var info = slider.getInfo()
-    $($('.tns-item > .inner').get(info.indexCached)).removeClass('active')
-    $($('.tns-item > .inner').get(info.displayIndex - 1)).addClass('active')
-    //console.log(`prevIndex: ${info.indexCached}\nDisplay:${info.displayIndex - 1}`)
+    $($('.tns-item > .inner').get(info.indexCached)).removeClass('active')  //Убераем эффекты с предыдущего слайда
     /**
-     * Animation
+     * Обработка анимациий
      */
-   // info.indexCached !== (info.displayIndex - 1) && console.log('no');
-
-    $($('.tns-item > .inner').get(info.displayIndex - 1)).find('.animation').each(function () {
+    $($('.tns-item > .inner').get(info.displayIndex - 1)).find('.animation').each(function () { //Запускаем анимации у текущего слайда
         $(this).addClass('start')
     })
-    $($('.tns-item > .inner').get(info.indexCached)).find('.animation').each(function () {
+    $($('.tns-item > .inner').get(info.indexCached)).find('.animation').each(function () { //Убераем анимцаии у предыдущего слайда
         info.indexCached !== (info.displayIndex - 1) && $(this).removeClass('start')
     })
     /**
      * Запуск прогесс бара и интервала
      */
-
-    if ($($('.slide').get(info.displayIndex - 1)).data('duration') !== undefined) {
+    /**
+     * Если есть data-duration, то берем из него длительность слайда
+     */
+    if ($($('.slide').get(info.displayIndex - 1)).data('duration') !== undefined) { 
         startProgress(info.displayIndex - 1, $($('.slide').get(0)).data('duration'))
         initInterval($($('.slide').get(0)).data('duration'))
     } else {
+        /**
+         * Если duration не объявленна, то ставим станадартную продолжительность
+         */
         startProgress(info.displayIndex - 1, 5000)
         initInterval(5000)
     }
 })
+/**
+ * Ловим события с колеса мыши для преключения слайдов
+ */
 $(window).on('wheel', function (event) {
-
-    // deltaY obviously records vertical scroll, deltaX and deltaZ exist too
-    if (event.originalEvent.deltaY < 0) {
+    if (event.originalEvent.deltaY < 0) { //Колесо мыши вниз
         if (slider.getInfo().displayIndex != 1) {
             slider.goTo(slider.getInfo().displayIndex - 2)
         }
 
-    }
-    else {
+    } else {//Колесо мыши вверх
         if (slider.getInfo().slideCount != slider.getInfo().displayIndex) {
             slider.goTo(slider.getInfo().displayIndex)
 
@@ -97,9 +100,9 @@ $(window).on('wheel', function (event) {
 });
 
 /**
- * Start progress bar for index
- * @param {number} index - Index of slide  
- * @param {number} duration - Duration of slider based on setTimeout
+ * Запуск прогресс бара по index слайда
+ * @param {number} index - index слайда  
+ * @param {number} duration - Длительность слайда (от интервала)
  */
 
 function startProgress(index, duration) {
@@ -116,7 +119,6 @@ function startProgress(index, duration) {
          */
         index != (slider.getInfo().slideCount - 1) &&
             $(this).data('for') > index && $(this).stop().css({ width: "0" });
-       // console.log(($(this).data('for') < index) + ' ' + i);
 
     })
     /**
@@ -126,7 +128,7 @@ function startProgress(index, duration) {
 
 }
 /**
- * Останавливает слайд
+ * Останавливает слайд заполняем прогрессбар
  */
 function stopProgres() {
     clearTimeout(interval);
@@ -140,11 +142,18 @@ function stopProgres() {
 function viewForm() {
     $('.send-form').addClass('view');
 }
-
-$(window).on('load',function() {
-    $('#preloader').fadeOut();
+function initForm() {
+    $('.fields').slideToggle()
+    $('.send-btn').addClass('is-loading')
+}
+/**
+ * Странциа загрузилась
+ */
+$(window).on('load', function () {
+    
+    $('#preloader').fadeOut(); //Убераем прелоадер
     /**
-     * Autoplay animation first slide
+     * Запускаем анимации для первого слайда
      * 
      */
     $($('.tns-item > .inner').get(0)).find('.animation').each(function () {
@@ -152,10 +161,12 @@ $(window).on('load',function() {
     })
     for (var index = 0; index < slider.getInfo().slideCount; index++) {
         $('.navigation > .columns').append('<div class="column"><div id="for' + index + '" class="loading"><div  data-for="' + index + '" class="progress"></div></div></div>')
-        //All progress bars rendered
+        /**
+         * Все прогрессбары отрисованны
+         */
         if (index == (slider.getInfo().slideCount - 1)) {
             /**
-             * Start first progressbar
+             * Запуск первого прогресс бара
              */
             if ($($('.slide').get(slider.getInfo().displayIndex - 1)).data('duration') !== undefined) {
                 startProgress(slider.getInfo().displayIndex - 1, $($('.slide').get(0)).data('duration'))
@@ -167,21 +178,34 @@ $(window).on('load',function() {
         }
 
     }
-    $('.navigation > .columns > .column').on('click',function(){
-      slider.goTo($(this).find('.progress').data('for'))  
+    /**
+     * Ловим клики по прогрессбару
+     */
+    $('.navigation > .columns > .column').on('click', function () {
+        slider.goTo($(this).find('.progress').data('for'))
     })
     /**
-     * Клики по процентам почему бы и нет
+     * Расчитываем клик/тап по процентам от экрана
      */
-    $('.main').on('click',function(e){
+    $('.main').on('click', function (e) {
+        /**
+         * Текущий процент от ширины экрана
+         */
         var percent = e.clientX / $(this).width() * 100;
-       if(percent >= 75){
-        slider.getInfo().displayIndex != slider.getInfo().slideCount && slider.goTo(slider.getInfo().displayIndex)
-       }else{
-           stopProgres()
-       }
-       //console.log(e);
-       
-        
+        /**
+         * Если данный процент, то переходим к следующему слайда
+         */
+        if (percent >= 75) {
+            /**
+             * Переходим к следующему слайду только если не последний слайд
+             */
+            slider.getInfo().displayIndex != slider.getInfo().slideCount &&
+                slider.goTo(slider.getInfo().displayIndex)
+        } else {
+            /**
+             * Останавливаем слайд если процент меньше чем нужно для перехода на слудующий слайд
+             */
+            stopProgres()
+        }
     })
 });
