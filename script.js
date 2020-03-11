@@ -147,6 +147,10 @@ function initForm() {
     $('.fields').slideToggle()
     $('.send-btn').addClass('is-loading')
 }
+function doneForm(){
+    $('.send-btn').slideToggle('fast')
+    $('.success').slideToggle('fast')
+}
 /**
  * Странциа загрузилась
  */
