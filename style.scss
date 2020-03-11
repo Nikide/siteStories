@@ -37,6 +37,8 @@
       img {
         animation: preloader 2s infinite;
         border-radius: 50%;
+        width: 150px;
+        height: 150px;
       }
     }
   }
@@ -49,7 +51,7 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
   padding: 2px;
   @media only screen and (max-width: 768px) {
-    .column{
+    .column {
       padding-top: 10px;
       padding-left: 0;
       padding-right: 0;
@@ -61,7 +63,7 @@
     }
     margin: 2px;
     @media only screen and (max-width: 768px) {
-      .loading{
+      .loading {
         height: 5px !important;
       }
     }
@@ -103,13 +105,16 @@
         }
         .box {
           overflow: hidden;
-          width: 70%;
+          width: 55%;
           border-radius: 0;
           height: 100vh !important;
-          background-position: center;
-          background-size: cover;
+          background-position: top center;
+          background-size: 100% 100%;
           background-repeat: no-repeat;
           position: relative;
+          &.no-padding {
+            padding: 0;
+          }
           &.vhc {
             display: flex;
             align-items: center;
@@ -132,10 +137,10 @@
             ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
             transform: translateY(100vh);
             transition: all 1s;
-            &.view{
+            &.view {
               transform: translateY(0);
             }
-            .fields{
+            .fields {
               margin-bottom: 10px;
             }
           }
@@ -166,16 +171,16 @@
 
 .animation {
   transition: all 1s;
-  &.delay-0{
+  &.delay-0 {
     transition-delay: 0.5s;
   }
-  &.delay-1{
+  &.delay-1 {
     transition-delay: 1s;
   }
-  &.delay-2{
+  &.delay-2 {
     transition-delay: 2s;
   }
-  &.delay-3{
+  &.delay-3 {
     transition-delay: 3s;
   }
   &.from-top {
@@ -196,6 +201,12 @@
       transform: translateX(0);
     }
   }
+  &.from-right {
+    transform: translateX(100vw);
+    &.start {
+      transform: translateX(0);
+    }
+  }
 
   &.colors {
     opacity: 0;
@@ -208,6 +219,28 @@
     transform: scale(0);
     &.start {
       transform: scale(1);
+    }
+  }
+  &.scale-a {
+    transform: scale(1);
+    opacity: 0;
+    &.start {
+      opacity: 1;
+      animation: preloader 1s infinite;
+    }
+  }
+  &.left-right {
+    opacity: 0;
+    &.start {
+      opacity: 1;
+      animation: left-right 0.5s ease-in-out infinite;
+    }
+  }
+  &.right-left {
+    opacity: 0;
+    &.start {
+      opacity: 1;
+      animation: right-left 0.5s ease-in-out infinite;
     }
   }
 }
@@ -223,7 +256,22 @@
     transform: scale(1);
   }
 }
-
+@keyframes left-right {
+  from {
+    transform: translateX(+2%);
+  }
+  to {
+    transform: translateX(-2%);
+  }
+}
+@keyframes right-left {
+  from {
+    transform: translateX(-2%);
+  }
+  to {
+    transform: translateX(+2%);
+  }
+}
 @keyframes text-color {
   20% {
     color: black;
