@@ -56,6 +56,7 @@ slider.events.on('indexChanged', function () {
 
     var info = slider.getInfo()
     $($('.tns-item > .inner').get(info.indexCached)).removeClass('active')  //Убераем эффекты с предыдущего слайда
+    $($('.tns-item > .inner').get(info.displayIndex - 1)).addClass('active') //Добавляем эффекты к текущему слайду
     /**
      * Обработка анимациий
      */
