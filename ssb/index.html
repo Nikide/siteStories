@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+    <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css"
+        integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../style.css">
+    <title>SiteStories Builder</title>
+</head>
+
+<body>
+    <p class="is-size-3 has-text-centered has-text-black-bis">Редактор Stories</p>
+    <section class="section">
+        <div class="container">
+
+            <div class="columns">
+                <div class="column is-2">
+                    <aside class="menu">
+                        <p class="menu-label">
+                            Слайды
+                        </p>
+                        <ul class="menu-list">
+                            <li><a>Слайд 1</a></li>
+                            <li><a>Слайд 2</a></li>
+                        </ul>
+                        <ul class="menu-list">
+                            <li><button class="button is-link is-fullwidth is-small"><i
+                                        class="fas fa-plus"></i></button></li>
+                        </ul>
+                    </aside>
+                </div>
+                <div class="column">
+                    <div class="main editor" style="height: 100vh;">
+                        <div class="story">
+                            <div class="slide" data-duration="10000">
+                                <div class="inner active">
+                                    <div class="box no-padding"
+                                        style="background-image: url(../img/brono/bg1.jpg); font-family: 'Montserrat', sans-serif;">
+                                        <div class="vhc-content">
+                                            <div class="animation from-top columns is-centered is-mobile is-size-7"
+                                                style="margin-top: 58%;line-height: 88%;">
+                                                <div class="column is-9">
+                                                    <p class="has-text-black-bis">
+                                                        bronoskins - проффесиональная бронипленка для вашего смартфона
+                                                        <br>
+                                                        <br>
+                                                        Мы работаем только на проффесиональном оборудовании с премиум
+                                                        материалами.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="animation from-left columns is-vcentered is-mobile is-centered">
+                                                <div class="column is-3">
+                                                    <img src="../img/brono/block1img1.png" alt="" srcset="">
+                                                </div>
+                                                <div class="column is-3 has-text-black-bis is-size-7">
+                                                    <span class="has-text-weight-bold">Глянцевая</span><br>
+                                                    защита смартфона
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="animation from-right columns is-vcentered is-mobile is-centered">
+                                                <div class="column is-3 has-text-black-bis is-size-7 has-text-right">
+                                                    <span class="has-text-weight-bold">Матовая</span><br>
+                                                    защита смартфона
+                                                </div>
+                                                <div class="column is-3">
+                                                    <img src="../img/brono/block1img2.png" alt="" srcset="">
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                class="animation from-bottom columns is-vcentered is-mobile is-centered">
+                                                <div class="column is-3">
+                                                    <img src="../img/brono/block1img3.png" alt="" srcset="">
+                                                </div>
+                                                <div class="column is-3 has-text-black-bis is-size-7">
+                                                    <span class="has-text-weight-bold">Текстурная</span><br>
+                                                    защита смартфона
+                                                </div>
+
+                                            </div>
+                                            <img class="animation left-right" src=".юю/img/brono/next.png"
+                                                style="position: absolute; right: 5%; bottom: 1%;max-height:50px;"
+                                                alt="" srcset="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="column is-3 ">
+                    <div class="box">
+                        <p class="has-text-centered">
+                            Настройка слайда
+                        </p>
+                    </div>
+                    <div class="box">
+                        <p class="has-text-centered">
+                            Настройка элемента
+                        </p>
+                        <textarea class="html">
+
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<script src="../script.js"></script>
+<script src="./editor.js"></script>
+
+</html>

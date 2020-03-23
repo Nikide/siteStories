@@ -81,6 +81,21 @@
   }
 }
 .main {
+  &.editor{
+    .box{
+      width: 55vh !important;
+    }
+
+    .vhc-content{
+      *:hover{
+        cursor: move;
+      }
+      .drag{
+        transition: none;
+      background-color: rgba(255, 0, 0, 0.5);
+      } 
+    }
+  }
   height: 100%;
   overflow: hidden;
   padding-left: 0;
@@ -103,7 +118,14 @@
           opacity: 1;
           transform: scale(1) translateY(0);
         }
+        video{
+          position: absolute;
+          object-fit: contain;
+        }
         .box {
+          &.has-video{
+            padding: 0;
+          }
           overflow: hidden;
           width: 55%;
           border-radius: 0;

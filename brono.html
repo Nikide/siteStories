@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.4.1.js"
-        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
-    <!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.helper.ie8.js"></script><![endif]-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
-    <link rel="stylesheet" href="style.css">
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/tiny-slider.css">
+<!--[if (lt IE 9)]><script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.helper.ie8.js"></script><![endif]-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.2/min/tiny-slider.js"></script>
+<link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 
 <body>
-    <div id="preloader">
+   <div id="preloader">
         <div class="inner">
             <div class="avatar">
                 <img src="./img/brono/logo.jpg" style="" alt="" srcset="">
@@ -80,6 +80,24 @@
                             </div>
                             <img class="animation left-right" src="./img/brono/next.png"
                                 style="position: absolute; right: 5%; bottom: 1%;max-height:50px;" alt="" srcset="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="inner">
+                    <div class="box is-marginless has-video" style="font-family: 'Montserrat', sans-serif;">
+                        <video src="./vid/Tulips-Screen.mp4" muted loop playsinline preload="auto">
+                              
+                        </video>
+                        <div class="vhc-content">
+                         <p class="has-text-centered animation from-top has-background-white" style="margin-top: 100%;">
+                             Тест видео
+                         </p>
+                         <img class="animation left-right" src="./img/brono/next.png"
+                         style="position: absolute; right: 5%; bottom: 1%;max-height:50px;" alt="" srcset="">
+                     <img class="animation right-left" src="./img/brono/prev.png"
+                         style="position: absolute; left: 5%; bottom: 1%;max-height:50px;" alt="" srcset="">
                         </div>
                     </div>
                 </div>
@@ -236,6 +254,6 @@
 
     </section>
 </body>
-<script src="script.min.js"></script>
+<script src="script.js"></script>
 
 </html>

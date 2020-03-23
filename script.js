@@ -17,10 +17,10 @@ var slider = tns({
     nav: false,
     autoplayButtonOutput: false,
     speed: 500,
-    mouseDrag: true,
+    mouseDrag: $('.editor').length == 1 ? false : true,
     responsive: {
         1000: {
-            items: 2
+            items: $('.editor').length == 1 ? 1 : 2
         },
         900: {
             items: 1
@@ -73,20 +73,39 @@ slider.events.on('indexChanged', function () {
      * Если есть data-duration, то берем из него длительность слайда
      */
     if ($($('.slide').get(info.displayIndex - 1)).data('duration') !== undefined) {
-        startProgress(info.displayIndex - 1, $($('.slide').get(0)).data('duration'))
-        initInterval($($('.slide').get(0)).data('duration'))
+        $('.editor').length != 1 && startProgress(info.displayIndex - 1, $($('.slide').get(0)).data('duration'))
+        $('.editor').length != 1 && initInterval($($('.slide').get(0)).data('duration'))
     } else {
         /**
          * Если duration не объявленна, то ставим станадартную продолжительность
          */
-        startProgress(info.displayIndex - 1, 5000)
-        initInterval(5000)
+        $('.editor').length != 1 && startProgress(info.displayIndex - 1, 5000)
+        $('.editor').length != 1 && initInterval(5000)
+    }
+
+    /**
+     * Работа с видео
+     */
+    if($($('.tns-item > .inner').get(info.displayIndex - 1)).find('video').length == 1){
+        var video = $($($('.tns-item > .inner').get(info.displayIndex - 1)).find('video')).get(0); //Может можно и проще
+        video.pause()
+        video.currentTime = 0;
+        video.play();
+        console.log(video.duration * 1000);
+        /**
+         * Переопределяем интервал
+         */
+        startProgress(info.displayIndex - 1, video.duration * 1000)
+        initInterval(video.duration * 1000)
+    }else if($($('.tns-item > .inner').get(info.indexCached)).find('video').length == 1){ //Останавливаем видео при смене слайда
+        var video = $($($('.tns-item > .inner').get(info.indexCached)).find('video')).get(0); //Может можно и проще
+        video.pause()
     }
 })
 /**
  * Ловим события с колеса мыши для преключения слайдов
  */
-$(window).on('wheel', function (event) {
+$('.editor').length != 1 && $(window).on('wheel', function (event) {
     if (event.originalEvent.deltaY < 0) { //Колесо мыши вниз
         if (slider.getInfo().displayIndex != 1) {
             slider.goTo(slider.getInfo().displayIndex - 2)
@@ -174,11 +193,11 @@ $(window).on('load', function () {
              * Запуск первого прогресс бара
              */
             if ($($('.slide').get(slider.getInfo().displayIndex - 1)).data('duration') !== undefined) {
-                startProgress(slider.getInfo().displayIndex - 1, $($('.slide').get(0)).data('duration'))
-                initInterval($($('.slide').get(0)).data('duration'))
+                $('.editor').length != 1 && startProgress(slider.getInfo().displayIndex - 1, $($('.slide').get(0)).data('duration'))
+                $('.editor').length != 1 && initInterval($($('.slide').get(0)).data('duration'))
             } else {
-                startProgress(slider.getInfo().displayIndex - 1, 5000)
-                initInterval(5000)
+                $('.editor').length != 1 && startProgress(slider.getInfo().displayIndex - 1, 5000)
+                $('.editor').length != 1 && initInterval(5000)
             }
         }
 
@@ -192,14 +211,14 @@ $(window).on('load', function () {
     /**
      * Расчитываем клик/тап по процентам от экрана
      */
-    $('.main').on('click', function (e) {
+    $('.editor').length != 1 &&  $('.main').on('click', function (e) {
         /**
          * Текущий процент от ширины экрана
          */
         var percent = e.clientX / $(this).width() * 100;
         /**
          * Если данный процент, то переходим к следующему слайда
-         */        
+         */
         if (percent >= 75) {
             /**
              * Переходим к следующему слайду только если не последний слайд
